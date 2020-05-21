@@ -63,7 +63,21 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    // разряды введенного числа: десятки, единицы
+    val penultimateDigit = age % 100 / 10
+    val lastDigit = age % 10
+
+    var yearsText = "лет"
+
+    if (lastDigit == 1 && penultimateDigit != 1) {
+        yearsText = "год"
+    } else if (lastDigit >= 2 && lastDigit <= 4 && penultimateDigit != 1) {
+        yearsText = "года"
+    }
+
+    return "$age $yearsText"
+}
 
 /**
  * Простая
@@ -76,7 +90,22 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    val distance1 = t1 * v1
+    val distance2 = t2 * v2
+    val distance3 = t3 * v3
+
+    val sumDistance = distance1 + distance2 + distance3
+    val halfDistance = sumDistance / 2
+
+    return if (halfDistance <= distance1) {
+        halfDistance / v1
+    } else if (halfDistance > distance1 && halfDistance <= distance1 + distance2) {
+        t1 + (halfDistance - distance1) / v2
+    } else {
+        t1 + t2 + (halfDistance - distance1 - distance2) / v3
+    }
+}
 
 /**
  * Простая
@@ -127,4 +156,18 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    return if (b < c || d < a) {
+        -1
+    } else if (b == c || (a == b && a >= c && a <= d) || (c == d && c >= a && c <= b)) {
+        0
+    } else if (c >= a && c <= b && d >= a && d <= b) {
+        d - c
+    } else if (a >= c && a <= d && b >= c && b <= d) {
+        b - a
+    } else if (b >= d && (a >= c && a <= d)) {
+        d - a
+    } else {
+        b - c
+    }
+}
