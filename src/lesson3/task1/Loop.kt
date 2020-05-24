@@ -2,7 +2,9 @@
 
 package lesson3.task1
 
+import lesson1.task1.angleInRadian
 import kotlin.math.abs
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 /**
@@ -102,14 +104,33 @@ fun fib(n: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int {
+    val minDivisorM = minDivisor(m)
+    val minDivisorN = minDivisor(n)
+
+    if (minDivisorM == minDivisorN) {
+        return minDivisorM
+    }
+
+    return 1
+}
 
 /**
  * Простая
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    var minDivisor = 0
+
+    for (i in 2..n) {
+        if (n % i == 0) {
+            minDivisor = i
+            break
+        }
+    }
+    return minDivisor
+}
 
 /**
  * Простая
@@ -192,7 +213,29 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    if (n < 10) return n
+
+    var count = 0
+    var number = n
+
+    while (number > 0) {
+        number /= 10
+        count++
+    }
+
+    number = n
+    var newNumber = 0
+
+    for (i in 1..count) {
+        val multiplicator = 10.0.pow(count - i)
+        newNumber = newNumber + number % 10 * multiplicator.toInt()
+
+        number = number / 10
+    }
+
+    return newNumber
+}
 
 /**
  * Средняя
