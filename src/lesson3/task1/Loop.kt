@@ -249,7 +249,7 @@ fun revert(n: Int): Int {
 fun isPalindrome(n: Int): Boolean {
     val reverseN = revert(n)
 
-    if (n == reverseN){
+    if (n == reverseN) {
         return true
     }
 
@@ -264,7 +264,20 @@ fun isPalindrome(n: Int): Boolean {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean {
+    if (n < 10) return false
+
+    var number = n
+    val digit = number % 10
+
+    while (number > 0) {
+        if (number % 10 != digit) return true
+
+        number /= 10
+    }
+
+    return false
+}
 
 /**
  * Сложная
