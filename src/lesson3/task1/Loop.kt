@@ -126,7 +126,7 @@ fun maxDivisor(n: Int): Int = TODO()
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
 fun isCoPrime(m: Int, n: Int): Boolean {
-    if (n < 2 && m < 2) return true
+    if (n < 2 || m < 2) return true
     if (n == 2 && m == 2) return true
     if (n % 2 == 0 && m % 2 == 0) return false
     if (m % n == 0 || n % m == 0) return false
