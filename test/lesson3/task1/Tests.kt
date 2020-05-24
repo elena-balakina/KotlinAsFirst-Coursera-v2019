@@ -81,11 +81,14 @@ class Tests {
         assertEquals(2, fib(3))
         assertEquals(5, fib(5))
         assertEquals(21, fib(8))
+        assertEquals(55, fib(10))
         assertEquals(102334155, fib(40))
         assertEquals(1134903170, fib(45))
         assertEquals(1836311903, fib(46))
         // Just to calculate it
         fib(50)
+        assertEquals(-298632863, fib(50))
+
     }
 
     @Test
@@ -137,6 +140,8 @@ class Tests {
         assertFalse(isCoPrime(6, 8))
         assertTrue(isCoPrime(17, 97))
         assertFalse(isCoPrime(37, 111))
+        assertFalse(isCoPrime(18, 54))
+        assertTrue(isCoPrime(110, 333))
         assertTrue(isCoPrime(1234567890, 908765431))
         assertTrue(isCoPrime(2109876543, 1234567891))
     }
@@ -242,8 +247,8 @@ class Tests {
         assertEquals(1, fibSequenceDigit(1))
         assertEquals(1, fibSequenceDigit(2))
         assertEquals(3, fibSequenceDigit(4))
-        assertEquals(2, fibSequenceDigit(9))
-        assertEquals(5, fibSequenceDigit(14))
-        assertEquals(2, fibSequenceDigit(20))
+        assertEquals(34, fibSequenceDigit(9))
+        assertEquals(377, fibSequenceDigit(14))
+        assertEquals(6765, fibSequenceDigit(20))
     }
 }

@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import kotlin.math.abs
 import kotlin.math.sqrt
 
 /**
@@ -75,7 +76,25 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var fibonacciNumber = 1
+
+    if (n == 0) {
+        fibonacciNumber = 0
+    } else {
+        var penultimateFibonacciNumber = 0
+        var previousFibonacciNumber = 1
+        var i = 2
+        while (i <= n) {
+            fibonacciNumber = penultimateFibonacciNumber + previousFibonacciNumber
+            penultimateFibonacciNumber = previousFibonacciNumber
+            previousFibonacciNumber = fibonacciNumber
+            i++
+        }
+    }
+
+    return fibonacciNumber
+}
 
 /**
  * Простая
@@ -106,7 +125,16 @@ fun maxDivisor(n: Int): Int = TODO()
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean {
+    if (n < 2 && m < 2) return false
+    if (n == 2 && m == 2) return true
+    if (n % 2 == 0 && m % 2 == 0) return false
+    if (m % n == 0 || n % m == 0) return false
+    for (i in 3..sqrt(n.toDouble()).toInt() step 2) {
+        if (n % i == 0 && m % i == 0) return false
+    }
+    return true
+}
 
 /**
  * Простая
@@ -207,4 +235,15 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    if (n == 0) {
+        return 0
+    }
+    if (n == 1 || n == 2) {
+        return 1
+    }
+
+    return fibSequenceDigit(n - 1) + fibSequenceDigit(n - 2)
+}
+
+
