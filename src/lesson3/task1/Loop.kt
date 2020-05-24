@@ -246,7 +246,15 @@ fun revert(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean {
+    val reverseN = revert(n)
+
+    if (n == reverseN){
+        return true
+    }
+
+    return false
+}
 
 /**
  * Средняя
